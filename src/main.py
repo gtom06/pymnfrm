@@ -3,40 +3,36 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def main():
-    # Read the CSV file into a DataFrame
+    # Read the CSV file
     df = pd.read_csv('data\portfolio.csv')
-
+    
     # Extract the 'contribution_value' and 'counter_value' columns
     contribution_value = df['contribution_value']
     counter_value = df['counter_value']
-
+    
     # Plot the data
     plt.plot(contribution_value, label='Contribution Value')
     plt.plot(counter_value, label='Counter Value')
-
-    # Add labels and title
     plt.xlabel('Date')
     plt.ylabel('Value')
     plt.title('Contribution Value vs Counter Value')
-
-    # Add legend
     plt.legend()
-
-    # Set x-axis ticks
+    
+    # Set custom x-axis ticks and labels
     x_ticks = np.arange(0, len(df), 50)
     x_labels = df['date'].iloc[x_ticks]
     plt.xticks(x_ticks, x_labels, rotation=90)
-
-    # Add grid
+    
+    # Enable grid lines
     plt.grid(True)
-
-    # Show the plot
+    
+    # Display the plot
     plt.show()
-
-    # Get the clicked point
+    
+    # Wait for user to click on the plot
     clicked_point = plt.ginput(1)
-
-    # Print the value of the clicked point
+    
+    # If a point is clicked, print its coordinates
     if clicked_point:
         x, y = clicked_point[0]
         print(f"Clicked point: x={x}, y={y}")
