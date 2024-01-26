@@ -20,7 +20,8 @@ def process_row(row):
         
         return column0, column1, column2, column3
     except ValueError as e:
-        print('Error: ', e)
+        #print('Error: ', e)
+        return None
 
 def process_csv(input_file, output_file):
     with open(input_file, newline='') as csvfile, open(output_file, 'w') as output_file:
@@ -56,19 +57,23 @@ def write_dataframe_to_csv(df, file_path):
 def calculate_sum(df, column_name):
     return df[column_name].sum()
 
-# Define the file path constants
-INPUT_FILE_PATH = 'data/portfolioFromGSheets.csv'
-OUTPUT_FILE_PATH = 'data/portfolio.csv'
+def main():
+    # Define the file path constants
+    INPUT_FILE_PATH = 'data/portfolioFromGSheets.csv'
+    OUTPUT_FILE_PATH = 'data/portfolio.csv'
 
-# Process the CSV file
-process_csv(INPUT_FILE_PATH, OUTPUT_FILE_PATH)
+    # Process the CSV file
+    process_csv(INPUT_FILE_PATH, OUTPUT_FILE_PATH)
 
-# Read the processed CSV file into a pandas DataFrame
-df = read_csv_to_dataframe(OUTPUT_FILE_PATH)
+    # Read the processed CSV file into a pandas DataFrame
+    df = read_csv_to_dataframe(OUTPUT_FILE_PATH)
 
-# Write the updated DataFrame back to the CSV file
-write_dataframe_to_csv(df, OUTPUT_FILE_PATH)
+    # Write the updated DataFrame back to the CSV file
+    write_dataframe_to_csv(df, OUTPUT_FILE_PATH)
 
-# Calculate the sum of the 'daily_invested' column
-sum_column1 = calculate_sum(df, 'daily_invested')
-print('Sum of column[1]:', sum_column1)
+    # Calculate the sum of the 'daily_invested' column
+    sum_column1 = calculate_sum(df, 'daily_invested')
+    print('Sum of column[1]:', sum_column1)
+
+if __name__ == "__main__":
+    main()
