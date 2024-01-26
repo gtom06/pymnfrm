@@ -1,6 +1,6 @@
 import unittest
 
-from import_utils import process_row
+from import_utils import process_csv, process_row
 
 class TestImportUtils(unittest.TestCase):
     def test_process_row(self):
@@ -22,5 +22,13 @@ class TestImportUtils(unittest.TestCase):
         # Test case 4: Invalid row with non-numeric values
         row4 = ['D', 'abc', 'def', 'ghi']
         self.assertEqual(process_row(row4), None)
+        
+    def test_process_csv(self):
+        # Test case 1: Valid input file with all values
+        input_file1 = 'data\portfolioFromGSheets_sample.csv'
+        output_file1 = r'data/test_output1.csv'
+        process_csv(input_file1, output_file1)
+        # Add assertions to validate the output file contents
+
 if __name__ == '__main__':
     unittest.main()
