@@ -8,7 +8,7 @@ def plot_data(df):
     counter_value = df['counter_value']
     
     # Create a figure object and set the title
-    fig = plt.figure()
+    fig = plt.figure("Portfolio Performance")
     fig.suptitle('Contribution Value vs Counter Value')
     
     # Plot the data
@@ -39,9 +39,6 @@ def plot_data(df):
     
     # Enable grid lines
     plt.grid(True)
-    
-    # Set the title on the window
-    plt.title('Portfolio Data')
     
     # Display the plot
     plt.show()
