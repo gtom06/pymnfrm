@@ -28,14 +28,6 @@ def main():
     
     # Display the plot
     plt.show()
-    
-    # Wait for user to click on the plot
-    clicked_point = plt.ginput(1)
-    
-    # If a point is clicked, print its coordinates
-    if clicked_point:
-        x, y = clicked_point[0]
-        print(f"Clicked point: x={x}, y={y}")
 
 if __name__ == "__main__":
     main()
