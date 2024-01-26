@@ -3,3 +3,4 @@
 /.idea
 /.vscode
 /data/mnfr.csv
+/src/__pycache__

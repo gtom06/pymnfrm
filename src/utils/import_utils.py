@@ -1,8 +1,11 @@
 import csv
 import pandas as pd
 
+# Define the file path constant
+FILE_PATH = 'data/portfolio.csv'
+
 # Open the input CSV file and create the output CSV file
-with open('data\portfolioFromGSheets.csv', newline='') as csvfile, open('data\portfolio.csv', 'w') as output_file:
+with open('data\portfolioFromGSheets.csv', newline='') as csvfile, open(FILE_PATH, 'w') as output_file:
     reader = csv.reader(csvfile)
     next(reader)
     
@@ -34,7 +37,7 @@ with open('data\portfolioFromGSheets.csv', newline='') as csvfile, open('data\po
             print('Error: ', e)
 
 # Read the processed CSV file into a pandas DataFrame
-df = pd.read_csv('data\portfolio.csv', parse_dates=['date'], dayfirst=True)
+df = pd.read_csv(FILE_PATH, parse_dates=['date'], dayfirst=True)
 
 # Convert the 'counter_value' column to numeric and interpolate missing values
 df['counter_value'] = pd.to_numeric(df['counter_value'], errors='coerce')
@@ -44,7 +47,7 @@ df['counter_value'] = df['counter_value'].interpolate()
 df = df.round(2)
 
 # Write the updated DataFrame back to the CSV file
-df.to_csv('data\portfolio.csv', index=False)
+df.to_csv(FILE_PATH, index=False)
 
 # Calculate the sum of the 'daily_invested' column
 sum_column1 = df['daily_invested'].sum()
