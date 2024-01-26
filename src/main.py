@@ -1,7 +1,5 @@
 from portfolioReader import plot_data, readcsv
 
-
-
 def main():
     # Read the CSV file
     df = readcsv()
