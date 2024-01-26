@@ -12,8 +12,8 @@ def plot_data(df):
     fig.suptitle('Contribution Value vs Counter Value')
     
     # Plot the data
-    plt.plot(contribution_value, label='Contribution Value')
-    plt.plot(counter_value, label='Counter Value')
+    plt.plot(contribution_value, label='Contribution Value', color='red')
+    plt.plot(counter_value, label='Counter Value', color='blue')
     
     # Fit a polynomial regression model to the data points for contribution_value
     degree = 10  # Degree of the polynomial (1 for linear regression)
@@ -25,8 +25,8 @@ def plot_data(df):
     trend_line_counter = np.polyval(coeffs, range(len(df)))
     
     # Plot the trend lines
-    plt.plot(trend_line_contribution, label='Contribution Trend Line', linestyle='-.')
-    plt.plot(trend_line_counter, label='Counter Trend Line', linestyle='-.')
+    plt.plot(trend_line_contribution, label='_nolegend_', linestyle='dotted', color='red')
+    plt.plot(trend_line_counter, label='_nolegend_', linestyle='dotted', color='blue')
     
     plt.xlabel('Date')
     plt.ylabel('Value')
@@ -35,7 +35,7 @@ def plot_data(df):
     # Set custom x-axis ticks and labels
     x_ticks = np.arange(0, len(df), 50)
     x_labels = df['date'].iloc[x_ticks]
-    plt.xticks(x_ticks, x_labels, rotation=90)
+    plt.xticks(x_ticks, x_labels, rotation=45)
     
     # Enable grid lines
     plt.grid(True)
