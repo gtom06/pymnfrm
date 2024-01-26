@@ -1,2 +1,5 @@
 /data/portfolio.csv
 /data/portfolioFromGSheets.csv
+/.idea
+/.vscode
+/data/mnfr.csv
