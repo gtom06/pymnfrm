@@ -19,8 +19,7 @@ def process_row(row):
             column3 = ''
         
         return column0, column1, column2, column3
-    except ValueError as e:
-        #print('Error: ', e)
+    except ValueError:
         return None
 
 def process_csv(input_file, output_file):
