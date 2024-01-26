@@ -21,7 +21,7 @@ class TestImportUtils(unittest.TestCase):
 
         # Test case 4: Invalid row with non-numeric values
         row4 = ['D', 'abc', 'def', 'ghi']
-        self.assertEqual(process_row(row4), None)
+        self.assertIsNone(process_row(row4))
         
     def test_process_csv(self):
         # Test case 1: Valid input file with all values

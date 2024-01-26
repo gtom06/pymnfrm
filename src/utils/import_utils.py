@@ -1,6 +1,9 @@
 import csv
 import pandas as pd
 
+INPUT_FILE_PATH = 'data/portfolioFromGSheets.csv'
+OUTPUT_FILE_PATH = 'data/portfolio.csv'
+
 def process_row(row):
     try:
         column0 = row[0]
@@ -56,13 +59,9 @@ def write_dataframe_to_csv(df, file_path):
 def calculate_sum(df, column_name):
     return df[column_name].sum()
 
-def main():
-    # Define the file path constants
-    INPUT_FILE_PATH = 'data/portfolioFromGSheets.csv'
-    OUTPUT_FILE_PATH = 'data/portfolio.csv'
-
+def execute(inputfile, outputfile):
     # Process the CSV file
-    process_csv(INPUT_FILE_PATH, OUTPUT_FILE_PATH)
+    process_csv(inputfile, outputfile)
 
     # Read the processed CSV file into a pandas DataFrame
     df = read_csv_to_dataframe(OUTPUT_FILE_PATH)
@@ -73,6 +72,9 @@ def main():
     # Calculate the sum of the 'daily_invested' column
     sum_column1 = calculate_sum(df, 'daily_invested')
     print('Sum of column[1]:', sum_column1)
+
+def main():
+    execute(INPUT_FILE_PATH, OUTPUT_FILE_PATH)
 
 if __name__ == "__main__":
     main()
