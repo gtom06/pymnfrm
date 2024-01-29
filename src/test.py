@@ -1,7 +1,17 @@
 import unittest
-
-from import_utils import process_csv, process_row
-
+import pandas as pd
+import random
+from portfolioReader import plot_data
+from utils.import_utils import process_csv, process_row
+class TestPortfolioReader(unittest.TestCase):
+    def test_plot_data(self):
+        # Create a sample DataFrame for testing
+        df = pd.DataFrame({
+            'date': pd.date_range(start='1/1/2022', periods=100),
+            'contribution_value': random.uniform(0.0, 1.0),
+            'counter_value': random.uniform(0.0, 1.0)
+        })
+        plot_data(df)
 class TestImportUtils(unittest.TestCase):
     def test_process_row(self):
         # Test case 1: Valid row with all values
@@ -25,10 +35,10 @@ class TestImportUtils(unittest.TestCase):
         
     def test_process_csv(self):
         # Test case 1: Valid input file with all values
-        input_file1 = 'data\portfolioFromGSheets_sample.csv'
-        output_file1 = r'data/test_output1.csv'
+        input_file1 = 'data/portfolioFromGSheets_sample.csv'
+        output_file1 = 'data/test_output1.csv'
         process_csv(input_file1, output_file1)
         # Add assertions to validate the output file contents
-
+        
 if __name__ == '__main__':
     unittest.main()
