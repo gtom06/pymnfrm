@@ -94,7 +94,7 @@ class TestImportUtils(unittest.TestCase):
         os.remove(inputfile)
         os.remove(outputfile)
 
-    def test_red_csv(self):
+    def test_read_csv(self):
         csv_data = 'date,daily_invested,contribution_value,counter_value\n15/11/2021," € 2.500,00 "," € 2.500,00 "," € 2.500,00 "\n16/11/2021, € -   ," € 2.500,00 "," € 2.500,00 "\n17/11/2021," € 10,00 "," € 2.510,00 "," € 2.510,00 "'
         inputfile = 'test_input.csv'
         with open(inputfile, "w", encoding='utf-8') as f:
