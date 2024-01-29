@@ -52,16 +52,16 @@ class TestImportUtils(unittest.TestCase):
         
     def test_read_csv_to_dataframe(self):
         # Create a sample CSV file
-        csv_data = "date,counter_value\n\"2022-01-01\",10\n\"2022-01-02\",20\n\"2022-01-03\",30\n"
+        csv_data = "date,counter_value\n\"2022-01-01\",10\n\"2022-02-01\",20\n\"2022-03-01\",30\n"
         file_path = "test.csv"
-        with open(file_path, "w") as f:
+        with open(file_path, "w", encoding='utf-8') as f:
             f.write(csv_data)
         df = read_csv_to_dataframe(file_path)
         expected_df = pd.DataFrame({
             'date': pd.to_datetime(['2022-01-01', '2022-01-02', '2022-01-03']),
             'counter_value': [10, 20, 30]
         })
-        #self.assertEqual(df, expected_df)
+        pd.testing.assert_frame_equal(df, expected_df)
         
         os.remove(file_path)
         
@@ -81,8 +81,9 @@ class TestImportUtils(unittest.TestCase):
         assert result == expected_result
     
     def test_execute(self):
+        FILE_PATH = 'test_input.csv'
         csv_data = 'date,daily_invested,contribution_value,counter_value\n15/11/2021," € 2.500,00 "," € 2.500,00 "," € 2.500,00 "\n16/11/2021, € -   ," € 2.500,00 "," € 2.500,00 "\n17/11/2021," € 10,00 "," € 2.510,00 "," € 2.510,00 "'
-        inputfile = 'test_input.csv'
+        inputfile = FILE_PATH
         with open(inputfile, "w", encoding='utf-8') as f:
             f.write(csv_data)
         # Define input and output file paths for testing
