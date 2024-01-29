@@ -21,12 +21,13 @@ class TestPortfolioReader(unittest.TestCase):
 class TestImportUtils(unittest.TestCase):
     def test_process_row(self):
         # Test case 1: Valid row with all values
-        row1 = ["15/11/2021"," â‚¬ 2.500,00 "," â‚¬ 2.500,00 "," â‚¬ 2.500,00 "]
+        EURO_AMOUNT = " â‚¬ 2.500,00 "
+        row1 = ["15/11/2021", EURO_AMOUNT, EURO_AMOUNT, EURO_AMOUNT]
         expected1 = ('15/11/2021', 2500.0, 2500.0, 2500.0)
         self.assertEqual(process_row(row1), expected1)
 
         # Test case 2: Valid row with empty values
-        row2 = ["15/11/2021","","",""]
+        row2 = ["15/11/2021", "", "", ""]
         expected2 = None
         self.assertEqual(process_row(row2), expected2)
 
