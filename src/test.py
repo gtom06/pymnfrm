@@ -6,11 +6,17 @@ from utils.import_utils import process_csv, process_row
 class TestPortfolioReader(unittest.TestCase):
     def test_plot_data(self):
         # Create a sample DataFrame for testing
-        df = pd.DataFrame({
-            'date': pd.date_range(start='1/1/2022', periods=100),
-            'contribution_value': random.uniform(0.0, 1.0),
-            'counter_value': random.uniform(0.0, 1.0)
-        })
+        df = pd.DataFrame(columns=['date', 'contribution_value', 'counter_value'])
+        
+        # Add multiple rows to the DataFrame
+        for _ in range(100):
+            row = {
+                'date': pd.date_range(start='1/1/2022', periods=1),
+                'contribution_value': random.uniform(0.0, 1.0),
+                'counter_value': random.uniform(0.0, 1.0)
+            }
+            df = df._append(row, ignore_index=True)
+        
         plot_data(df)
 class TestImportUtils(unittest.TestCase):
     def test_process_row(self):
