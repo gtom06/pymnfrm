@@ -4,3 +4,4 @@
 /.vscode
 /data/mnfr.csv
 /src/__pycache__
+/src/utils/__pycache__
