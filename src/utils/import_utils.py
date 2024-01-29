@@ -8,16 +8,16 @@ def process_row(row):
     try:
         column0 = row[0]
         # Convert and round the values in column 1 and column 2
-        if row[1] != '' and row[1]!= ' â‚¬ -   ':
-            column1 = round(float(row[1].replace(' â‚¬ ', '').replace('.', '').replace(',', '.')), 2)
+        if row[1] != '' and row[1]!= ' € -   ':
+            column1 = round(float(row[1].replace('€', '').replace('.', '').replace(',', '.')), 2)
         else:
             column1 = 0
         
-        column2 = round(float(row[2].replace('â‚¬ ', '').replace('.', '').replace(',', '.')), 2)
+        column2 = round(float(row[2].replace('€ ', '').replace('.', '').replace(',', '.')), 2)
         
         # Convert and round the value in column 3 if it is not empty
         if row[3] != '':
-            column3 = round(float(row[3].replace(' â‚¬ ', '').replace('.', '').replace(',', '.')), 2)
+            column3 = round(float(row[3].replace(' € ', '').replace('.', '').replace(',', '.')), 2)
         else:
             column3 = ''
         
@@ -26,7 +26,7 @@ def process_row(row):
         return None
 
 def process_csv(input_file, output_file):
-    with open(input_file, newline='') as csvfile, open(output_file, 'w') as output_file:
+    with open(input_file, newline='', encoding='utf-8') as csvfile, open(output_file, 'w') as output_file:
         reader = csv.reader(csvfile)
         next(reader)
         

@@ -23,7 +23,7 @@ class TestPortfolioReader(unittest.TestCase):
 class TestImportUtils(unittest.TestCase):
     def test_process_row(self):
         # Test case 1: Valid row with all values
-        EURO_AMOUNT = " â‚¬ 2.500,00 "
+        EURO_AMOUNT = " € 2.500,00 "
         row1 = ["15/11/2021", EURO_AMOUNT, EURO_AMOUNT, EURO_AMOUNT]
         expected1 = ('15/11/2021', 2500.0, 2500.0, 2500.0)
         self.assertEqual(process_row(row1), expected1)
@@ -83,7 +83,7 @@ class TestImportUtils(unittest.TestCase):
     def test_execute(self):
         csv_data = 'date,daily_invested,contribution_value,counter_value\n15/11/2021," € 2.500,00 "," € 2.500,00 "," € 2.500,00 "\n16/11/2021, € -   ," € 2.500,00 "," € 2.500,00 "\n17/11/2021," € 10,00 "," € 2.510,00 "," € 2.510,00 "'
         inputfile = 'test_input.csv'
-        with open(inputfile, "w") as f:
+        with open(inputfile, "w", encoding='utf-8') as f:
             f.write(csv_data)
         # Define input and output file paths for testing
         
@@ -93,7 +93,14 @@ class TestImportUtils(unittest.TestCase):
         execute(inputfile, outputfile)
         os.remove(inputfile)
         os.remove(outputfile)
-        
+
+    def test_red_csv(self):
+        csv_data = 'date,daily_invested,contribution_value,counter_value\n15/11/2021," € 2.500,00 "," € 2.500,00 "," € 2.500,00 "\n16/11/2021, € -   ," € 2.500,00 "," € 2.500,00 "\n17/11/2021," € 10,00 "," € 2.510,00 "," € 2.510,00 "'
+        inputfile = 'test_input.csv'
+        with open(inputfile, "w", encoding='utf-8') as f:
+            f.write(csv_data)
+        readcsv(csv_file_path = 'test_input.csv')
+        os.remove(inputfile)
         
 if __name__ == '__main__':
     unittest.main()
