@@ -59,6 +59,7 @@ def write_dataframe_to_csv(df, file_path):
 def calculate_sum(df, column_name):
     return df[column_name].sum()
 
+#call this function to execute the operations
 def execute(inputfile, outputfile):
     # Process the CSV file
     process_csv(inputfile, outputfile)
@@ -72,9 +73,3 @@ def execute(inputfile, outputfile):
     # Calculate the sum of the 'daily_invested' column
     sum_column1 = calculate_sum(df, 'daily_invested')
     print('Sum of column[1]:', sum_column1)
-
-def main():
-    execute(INPUT_FILE_PATH, OUTPUT_FILE_PATH)
-
-if __name__ == "__main__":
-    main()
