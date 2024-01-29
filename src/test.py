@@ -1,8 +1,10 @@
+import csv
+import os
 import unittest
 import pandas as pd
 import random
-from portfolioReader import plot_data
-from utils.import_utils import process_csv, process_row
+from portfolioReader import plot_data, readcsv
+from utils.import_utils import calculate_sum, process_csv, process_row, read_csv_to_dataframe, execute
 class TestPortfolioReader(unittest.TestCase):
     def test_plot_data(self):
         # Create a sample DataFrame for testing
@@ -45,7 +47,53 @@ class TestImportUtils(unittest.TestCase):
         input_file1 = 'data/portfolioFromGSheets_sample.csv'
         output_file1 = 'data/test_output1.csv'
         process_csv(input_file1, output_file1)
+        os.remove(output_file1)
         # Add assertions to validate the output file contents
+        
+    def test_read_csv_to_dataframe(self):
+        # Create a sample CSV file
+        csv_data = "date,counter_value\n\"2022-01-01\",10\n\"2022-01-02\",20\n\"2022-01-03\",30\n"
+        file_path = "test.csv"
+        with open(file_path, "w") as f:
+            f.write(csv_data)
+        df = read_csv_to_dataframe(file_path)
+        expected_df = pd.DataFrame({
+            'date': pd.to_datetime(['2022-01-01', '2022-01-02', '2022-01-03']),
+            'counter_value': [10, 20, 30]
+        })
+        #self.assertEqual(df, expected_df)
+        
+        os.remove(file_path)
+        
+    
+    def test_calculate_sum(self):
+        # Create a sample DataFrame
+        df = pd.DataFrame({
+            'A': [1, 2, 3, 4, 5],
+            'B': [10, 20, 30, 40, 50]
+        })
+        
+        # Call the function under test
+        result = calculate_sum(df, 'B')
+        
+        # Assert the expected output
+        expected_result = 150
+        assert result == expected_result
+    
+    def test_execute(self):
+        csv_data = 'date,daily_invested,contribution_value,counter_value\n15/11/2021," € 2.500,00 "," € 2.500,00 "," € 2.500,00 "\n16/11/2021, € -   ," € 2.500,00 "," € 2.500,00 "\n17/11/2021," € 10,00 "," € 2.510,00 "," € 2.510,00 "'
+        inputfile = 'test_input.csv'
+        with open(inputfile, "w") as f:
+            f.write(csv_data)
+        # Define input and output file paths for testing
+        
+        outputfile = 'test_output.csv'
+
+        # Call the execute function with the test file paths
+        execute(inputfile, outputfile)
+        os.remove(inputfile)
+        os.remove(outputfile)
+        
         
 if __name__ == '__main__':
     unittest.main()

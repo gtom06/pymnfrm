@@ -43,7 +43,7 @@ def plot_data(df):
     # Display the plot
     plt.show()
 
-def readcsv():
+def readcsv(csv_file_path = 'data/portfolio.csv'):
     # Read the CSV file
-    df = pd.read_csv(r'data\portfolio.csv')
+    df = pd.read_csv(csv_file_path)
     return df
