@@ -1,4 +1,3 @@
-import csv
 import os
 import unittest
 import pandas as pd
@@ -81,13 +80,11 @@ class TestImportUtils(unittest.TestCase):
         assert result == expected_result
     
     def test_execute(self):
-        FILE_PATH = 'test_input.csv'
+        FILE_PATH = 'test_input.csv'  # Define the FILE_PATH variable
         csv_data = 'date,daily_invested,contribution_value,counter_value\n15/11/2021," € 2.500,00 "," € 2.500,00 "," € 2.500,00 "\n16/11/2021, € -   ," € 2.500,00 "," € 2.500,00 "\n17/11/2021," € 10,00 "," € 2.510,00 "," € 2.510,00 "'
         inputfile = FILE_PATH
         with open(inputfile, "w", encoding='utf-8') as f:
             f.write(csv_data)
-        # Define input and output file paths for testing
-        
         outputfile = 'test_output.csv'
 
         # Call the execute function with the test file paths
@@ -96,12 +93,12 @@ class TestImportUtils(unittest.TestCase):
         os.remove(outputfile)
 
     def test_read_csv(self):
+        FILE_PATH = 'test_input.csv'
         csv_data = 'date,daily_invested,contribution_value,counter_value\n15/11/2021," € 2.500,00 "," € 2.500,00 "," € 2.500,00 "\n16/11/2021, € -   ," € 2.500,00 "," € 2.500,00 "\n17/11/2021," € 10,00 "," € 2.510,00 "," € 2.510,00 "'
-        inputfile = 'test_input.csv'
-        with open(inputfile, "w", encoding='utf-8') as f:
+        with open(FILE_PATH, "w", encoding='utf-8') as f:
             f.write(csv_data)
-        readcsv(csv_file_path = 'test_input.csv')
-        os.remove(inputfile)
+        readcsv(csv_file_path = FILE_PATH)
+        os.remove(FILE_PATH)
         
 if __name__ == '__main__':
     unittest.main()
