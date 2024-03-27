@@ -16,7 +16,7 @@ def plot_data(df):
     plt.plot(counter_value, label='Counter Value', color='blue')
     
     # Fit a polynomial regression model to the data points for contribution_value
-    degree = 20  # Degree of the polynomial (1 for linear regression)
+    degree = 64  # Degree of the polynomial (1 for linear regression)
     coeffs = np.polyfit(range(len(df)), contribution_value, degree)
     trend_line_contribution = np.polyval(coeffs, range(len(df)))
     
